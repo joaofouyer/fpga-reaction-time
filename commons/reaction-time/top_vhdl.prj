@@ -1,0 +1,8 @@
+vhdl work "C:\Users\fouyer\Documents\DSD\fpga-reaction-time\src\mdisplay.vhd"
+vhdl work "C:\Users\fouyer\Documents\DSD\fpga-reaction-time\src\divclock.vhd"
+vhdl work "C:\Users\fouyer\Documents\DSD\fpga-reaction-time\src\display7seg.vhd"
+vhdl work "C:\Users\fouyer\Documents\DSD\fpga-reaction-time\src\cont_reacao.vhd"
+vhdl work "C:\Users\fouyer\Documents\DSD\fpga-reaction-time\src\cont_led.vhd"
+vhdl work "C:\Users\fouyer\Documents\DSD\fpga-reaction-time\src\uc.vhd"
+vhdl work "C:\Users\fouyer\Documents\DSD\fpga-reaction-time\src\fd.vhd"
+vhdl work "C:\Users\fouyer\Documents\DSD\fpga-reaction-time\src\top.vhd"

@@ -1,0 +1,8 @@
+vhdl work "../../src/mdisplay.vhd"
+vhdl work "../../src/divclock.vhd"
+vhdl work "../../src/display7seg.vhd"
+vhdl work "../../src/cont_reacao.vhd"
+vhdl work "../../src/cont_led.vhd"
+vhdl work "../../src/uc.vhd"
+vhdl work "../../src/fd.vhd"
+vhdl work "../../src/top.vhd"
