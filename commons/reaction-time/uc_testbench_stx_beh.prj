@@ -1,0 +1,2 @@
+vhdl isim_temp "../../src/uc.vhd"
+vhdl isim_temp "uc_testbench.vhd"

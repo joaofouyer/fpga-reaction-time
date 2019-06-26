@@ -1,3 +1,4 @@
+vhdl work "C:\Users\fouyer\Documents\DSD\fpga-reaction-time\src\reaction_overflow.vhd"
 vhdl work "C:\Users\fouyer\Documents\DSD\fpga-reaction-time\src\mdisplay.vhd"
 vhdl work "C:\Users\fouyer\Documents\DSD\fpga-reaction-time\src\divclock.vhd"
 vhdl work "C:\Users\fouyer\Documents\DSD\fpga-reaction-time\src\display7seg.vhd"

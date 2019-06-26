@@ -19,11 +19,16 @@ END fluxo_de_dados;
 ARCHITECTURE Behavioral OF fluxo_de_dados IS
 	SIGNAL	clock1Mhz 	: STD_LOGIC;
 	SIGNAL	led_on	 	: STD_LOGIC;
-	
+	SIGNAL	RCO_REACTION_READ	 	: STD_LOGIC;
 	SIGNAL	cont_uni 	: STD_LOGIC_VECTOR(3 DOWNTO 0);
 	SIGNAL	cont_dez		: STD_LOGIC_VECTOR(3 DOWNTO 0);
 	SIGNAL	cont_cen		: STD_LOGIC_VECTOR(3 DOWNTO 0);
 	SIGNAL	cont_mil 	: STD_LOGIC_VECTOR(3 DOWNTO 0);
+	
+	SIGNAL	saida3	   : STD_LOGIC_VECTOR(6 DOWNTO 0);
+	SIGNAL	saida2	   : STD_LOGIC_VECTOR(6 DOWNTO 0);
+	SIGNAL	saida1	   : STD_LOGIC_VECTOR(6 DOWNTO 0);
+	SIGNAL	saida0	   : STD_LOGIC_VECTOR(6 DOWNTO 0);
 	
 	SIGNAL	display3	   : STD_LOGIC_VECTOR(6 DOWNTO 0);
 	SIGNAL	display2	   : STD_LOGIC_VECTOR(6 DOWNTO 0);
@@ -73,6 +78,20 @@ ARCHITECTURE Behavioral OF fluxo_de_dados IS
 		 );
 	END COMPONENT;
 	
+	COMPONENT reaction_over IS
+		PORT(
+			rco_reaction   : IN  std_logic;
+			entrada3			: IN  std_logic_vector(6 DOWNTO 0);
+			entrada2 		: IN  std_logic_vector(6 DOWNTO 0);
+			entrada1 		: IN  std_logic_vector(6 DOWNTO 0);
+			entrada0 		: IN  std_logic_vector(6 DOWNTO 0);
+			saida3			: OUT std_logic_vector(6 DOWNTO 0);
+			saida2	 		: OUT std_logic_vector(6 DOWNTO 0);
+			saida1	 		: OUT std_logic_vector(6 DOWNTO 0);
+			saida0	 		: OUT std_logic_vector(6 DOWNTO 0)
+		);
+	END COMPONENT;
+	
 	COMPONENT multi_display IS
 		PORT(
 			clock    : IN  std_logic;
@@ -85,12 +104,15 @@ ARCHITECTURE Behavioral OF fluxo_de_dados IS
 		);
 	END COMPONENT;
 	
+	
 BEGIN
-	div_clock			:	divclock 		PORT MAP(clock, clear, clock1Mhz);
-	contador_led		:	cont_led 		PORT MAP(start_cont_led, clear, clock1Mhz, led_on);
+	div_clock			:	divclock 			PORT MAP(clock, clear, clock1Mhz);
+	contador_led		:	cont_led 			PORT MAP(start_cont_led, clear, clock1Mhz, led_on);
 	rco_led <= led_on;
-	contador_reacao	:	cont_reacao 		PORT MAP(start_cont_reaction, clear, clock1Mhz, cont_uni, cont_dez, cont_cen, cont_mil, rco_reaction);	
-	display7seg			:	hex7seg				PORT MAP(cont_uni, cont_dez, cont_cen, cont_mil, display3, display2, display1, display0);
+	contador_reacao	:	cont_reacao 		PORT MAP(start_cont_reaction, clear, clock1Mhz, cont_uni, cont_dez, cont_cen, cont_mil, RCO_REACTION_READ);	
+	rco_reaction <= RCO_REACTION_READ;
+	display7seg			:	hex7seg				PORT MAP(cont_uni, cont_dez, cont_cen, cont_mil, saida3, saida2, saida1, saida0);
+	reactionover		:	reaction_over	PORT MAP(RCO_REACTION_READ, saida3, saida2, saida1, saida0, display3, display2, display1, display0);
 	mdisplay				:	multi_display		PORT MAP(clock, display3, display2, display1, display0, display, anodes);
 	
 END Behavioral;

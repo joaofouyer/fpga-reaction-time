@@ -1,0 +1,2 @@
+vhdl work "../../src/uc.vhd"
+vhdl work "uc-test-bench.vhd"

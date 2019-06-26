@@ -58,11 +58,19 @@ BEGIN
 				END IF;
 			END IF;
 		END IF;
+		IF RCO_READ = '1' THEN
+			cont_uni <= "0001";
+			cont_dez <= "0001";
+			cont_cen <= "0001";
+			cont_mil <= "1111";
+		ELSE
+			cont_uni <= STD_LOGIC_VECTOR(IQ_UNI);
+			cont_dez <= STD_LOGIC_VECTOR(IQ_DEZ);
+			cont_cen <= STD_LOGIC_VECTOR(IQ_CEN);
+			cont_mil <= STD_LOGIC_VECTOR(IQ_MIL);
+		END IF;
 		
-		cont_uni <= STD_LOGIC_VECTOR(IQ_UNI);
-		cont_dez <= STD_LOGIC_VECTOR(IQ_DEZ);
-		cont_cen <= STD_LOGIC_VECTOR(IQ_CEN);
-		cont_mil <= STD_LOGIC_VECTOR(IQ_MIL);
+		
 		rco 		<= RCO_READ;
 	END PROCESS;
 END Behavorial;

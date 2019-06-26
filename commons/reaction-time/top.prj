@@ -1,3 +1,4 @@
+vhdl work "../../src/reaction_overflow.vhd"
 vhdl work "../../src/mdisplay.vhd"
 vhdl work "../../src/divclock.vhd"
 vhdl work "../../src/display7seg.vhd"
