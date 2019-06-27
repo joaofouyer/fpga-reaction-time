@@ -4,9 +4,10 @@ USE ieee.std_logic_arith.ALL;
 
 ENTITY cont_reacao IS
     PORT (
+			clock						:	IN		STD_LOGIC;
 			start_cont_reaction	:	IN		STD_LOGIC;
 			clear						:	IN		STD_LOGIC;
-			clock						:	IN		STD_LOGIC;
+			violated					:	IN		STD_LOGIC;
 			cont_uni					:	OUT	STD_LOGIC_VECTOR(3 downto 0);
 			cont_dez					:	OUT	STD_LOGIC_VECTOR(3 downto 0);
 			cont_cen					:	OUT	STD_LOGIC_VECTOR(3 downto 0);
@@ -25,15 +26,14 @@ BEGIN
 
 	PROCESS (start_cont_reaction, clear, clock, IQ_UNI, IQ_DEZ, IQ_CEN, IQ_MIL, RCO_READ)
 	BEGIN
-	
 		IF clear = '1' THEN
-		
 			IQ_UNI 	<= (OTHERS => '0');
 			IQ_DEZ 	<= (OTHERS => '0');
 			IQ_CEN 	<= (OTHERS => '0');
 			IQ_MIL 	<= (OTHERS => '0');
 			RCO_READ	<= '0';
-			
+		ELSIF violated = '1' THEN
+			RCO_READ	<= '1';
 		ELSIF clock'event AND clock = '1' THEN
 			-- Contagem da unidade começa quando encount (sinal enviado pelo acendimento do display) é igual a 1.
 			IF start_cont_reaction = '1' AND RCO_READ = '0' THEN -- Quando ele atinge o valor máximo que consegue contar (9999), ele para.
@@ -58,19 +58,10 @@ BEGIN
 				END IF;
 			END IF;
 		END IF;
-		IF RCO_READ = '1' THEN
-			cont_uni <= "0001";
-			cont_dez <= "0001";
-			cont_cen <= "0001";
-			cont_mil <= "1111";
-		ELSE
-			cont_uni <= STD_LOGIC_VECTOR(IQ_UNI);
-			cont_dez <= STD_LOGIC_VECTOR(IQ_DEZ);
-			cont_cen <= STD_LOGIC_VECTOR(IQ_CEN);
-			cont_mil <= STD_LOGIC_VECTOR(IQ_MIL);
-		END IF;
-		
-		
+		cont_uni <= STD_LOGIC_VECTOR(IQ_UNI);
+		cont_dez <= STD_LOGIC_VECTOR(IQ_DEZ);
+		cont_cen <= STD_LOGIC_VECTOR(IQ_CEN);
+		cont_mil <= STD_LOGIC_VECTOR(IQ_MIL);
 		rco 		<= RCO_READ;
 	END PROCESS;
 END Behavorial;

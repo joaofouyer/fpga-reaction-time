@@ -42,6 +42,7 @@ ARCHITECTURE medidor OF top IS
 			 clear					:	IN		STD_LOGIC;
 			 start_game				:	IN		STD_LOGIC;
 			 start_cont_reaction	:	IN		STD_LOGIC;
+			 button					:	IN		STD_LOGIC;
 			 rco_led					:	OUT	STD_LOGIC;
 			 rco_reaction			:	OUT	STD_LOGIC;
 			 display					:	OUT	STD_LOGIC_VECTOR(6 DOWNTO 0);
@@ -51,6 +52,6 @@ ARCHITECTURE medidor OF top IS
 	
 BEGIN
 	uc		: unidade_de_controle 	PORT MAP(clear, start, led_on, reaction_overflow, button, clock, start_game, start_cont_reaction, rco_led, rco_reaction);
-	fluxo	: fluxo_de_dados 			PORT MAP(clock, clear, start_game, start_cont_reaction, led_on, reaction_overflow, display, anodes);
+	fluxo	: fluxo_de_dados 			PORT MAP(clock, clear, start_game, start_cont_reaction, button, led_on, reaction_overflow, display, anodes);
 	overflow_rco <= (OTHERS => reaction_overflow);
 END medidor;

@@ -3,15 +3,15 @@ use ieee.std_logic_1164.all;
 
 ENTITY reaction_over IS
 	PORT (
-			rco_reaction: IN  STD_LOGIC;
-			entrada3   	: IN  STD_LOGIC_VECTOR(6 DOWNTO 0);
+			rco_reaction		: IN  STD_LOGIC;
+			entrada3   			: IN  STD_LOGIC_VECTOR(6 DOWNTO 0);
 			entrada2   	   	: IN  STD_LOGIC_VECTOR(6 DOWNTO 0);
 			entrada1  	   	: IN  STD_LOGIC_VECTOR(6 DOWNTO 0);
 			entrada0   	   	: IN  STD_LOGIC_VECTOR(6 DOWNTO 0);
-         saida3 	: OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
-         saida2 	: OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
-         saida1 	: OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
-         saida0 	: OUT STD_LOGIC_VECTOR(6 DOWNTO 0)
+         saida3 				: OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
+         saida2 				: OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
+         saida1 				: OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
+         saida0 				: OUT STD_LOGIC_VECTOR(6 DOWNTO 0)
 	 );
 END reaction_over;
 
