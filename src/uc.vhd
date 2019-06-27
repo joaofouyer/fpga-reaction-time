@@ -9,7 +9,7 @@ ENTITY unidade_de_controle IS
 			 reaction_overflow	:		IN 	STD_LOGIC;
 			 button					:		IN 	STD_LOGIC;
 			 clock					:		IN 	STD_LOGIC;
-			 start_cont_led		:		OUT	STD_LOGIC;
+			 start_game			:		OUT	STD_LOGIC;
 			 start_cont_reaction	:		OUT	STD_LOGIC;
 			 rco_led					:		OUT	STD_LOGIC;
 			 rco_reaction			:		OUT	STD_LOGIC
@@ -52,7 +52,7 @@ BEGIN
 	END IF;
 	END PROCESS;
 	
-	start_cont_led 		<= '1' WHEN estado = contando_led 		ELSE '0';
+	start_game 				<= '1' WHEN estado = contando_led 		ELSE '0';
 	start_cont_reaction 	<= '1' WHEN estado = contando_reacao 	ELSE '0';
 	rco_led 					<= '1' WHEN estado = contando_reacao 	ELSE '0';
 	rco_reaction 			<= '1' WHEN estado = carregado AND reaction_overflow = '1' ELSE '0';
